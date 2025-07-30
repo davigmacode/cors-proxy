@@ -10,8 +10,5 @@
     "build": "echo 'No build step required'",
     "deploy": "vercel --prod"
   },
-  "dependencies": {
-    "http-proxy-middleware": "^2.0.6"
-  },
   "packageManager": "pnpm@10.14.0-0"
 }
