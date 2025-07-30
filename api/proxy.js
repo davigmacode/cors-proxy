@@ -8,7 +8,8 @@ export default async function handler(req) {
 
   const { pathname, search } = new URL(req.url);
   const sanitizedSearch = search.replace(/(^|\?|&)path=[^&]*/g, "").replace(/&&/, "&").replace(/\?&/, "?");
-  const targetPath = pathname.replace(/^\/api/, "");
+  const prefix = process.env.API_PREFIX || "/proxy";
+  const targetPath = pathname.replace(new RegExp(`^${prefix}`), "");
   const targetUrl = `${target}${targetPath}${sanitizedSearch}`;
   console.log(targetUrl);
 
