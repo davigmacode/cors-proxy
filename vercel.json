@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/src/proxy.js"
+      "destination": "/src/api.js"
     },
     {
       "source": "/image",

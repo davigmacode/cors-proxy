@@ -1,20 +1,24 @@
-export default async function handler(req, res) {
-  const imgUrl = req.query.url;
+export const config = {
+  runtime: 'edge',
+};
 
-  if (!imgUrl) {
-    return res.status(400).send('Missing ?url=');
+export default async function handler(req) {
+  const { searchParams } = new URL(req.url);
+  const url = searchParams.get("url");
+
+  if (!url) {
+    return new Response('Missing ?url=', { status: 400 });
   }
 
   try {
-    const response = await fetch(decodeURIComponent(imgUrl));
-    const contentType = response.headers.get("content-type") || "image/jpeg";
+    const imgRes = await fetch(url);
+    const headers = new Headers({
+      'Content-Type': imgRes.headers.get("content-type") || "image/jpeg",
+      'Cache-Control': 'public, max-age=3600',
+    });
 
-    res.setHeader("Content-Type", contentType);
-    res.setHeader("Cache-Control", "public, max-age=3600");
-
-    const buffer = await response.arrayBuffer();
-    res.status(200).send(Buffer.from(buffer));
+    return new Response(imgRes.body, { headers, status: imgRes.status});
   } catch (e) {
-    res.status(500).send("Failed to fetch image.");
+    return new Response("Failed to fetch image", { status: 500 });
   }
 }
