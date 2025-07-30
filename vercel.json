@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/src/proxy.js"
+    },
+    {
+      "source": "/image",
+      "destination": "/src/image.js"
+    }
+  ]
+}

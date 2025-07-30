@@ -1,0 +1,17 @@
+{
+  "name": "cors-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A lightweight CORS-friendly API and image proxy server designed for serverless deployment on Vercel.",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel dev",
+    "build": "echo 'No build step required'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
+  },
+  "packageManager": "pnpm@10.14.0-0"
+}

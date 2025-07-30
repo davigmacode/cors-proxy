@@ -1,0 +1,5 @@
+---
+dictionaries:
+  - node
+ignorePaths:
+  - 'node_modules'
